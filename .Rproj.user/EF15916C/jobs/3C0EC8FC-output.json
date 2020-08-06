@@ -1,0 +1,8 @@
+[1,"Installing 'gapminder' ...\n"]
+[2,"trying URL 'https://cran.rstudio.com/bin/macosx/contrib/4.0/gapminder_0.3.0.tgz'\n"]
+[2,"Content type 'application/x-gzip' length 2031956 bytes (1.9 MB)\n===="]
+[2,"========================="]
+[2,"=====================\ndownloaded 1.9 MB\n\n"]
+[1,"The downloaded binary packages are in\n"]
+[1,"\t/var/folders/d0/smzcjn8j07v009d3s8z44t9c0000gp/T//Rtmp9N4xkd/downloaded_packages\n"]
+[2,"\n\n✔ Package 'gapminder' successfully installed.\n"]

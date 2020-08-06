@@ -1,0 +1,25 @@
+{
+    "id": "DF2EC3AC",
+    "path": "~/instruction/workshops/2020-dh-r/emperors.R",
+    "project_path": "emperors.R",
+    "type": "r_source",
+    "hash": "3380867031",
+    "contents": "",
+    "dirty": false,
+    "created": 1596737662132.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "5,0",
+        "scrollLine": "1"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1596738034,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1596738034084,
+    "read_only": false,
+    "read_only_alternatives": []
+}

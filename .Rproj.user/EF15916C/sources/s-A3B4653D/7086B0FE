@@ -1,0 +1,25 @@
+{
+    "id": "7086B0FE",
+    "path": "~/instruction/workshops/2020-dh-r/mapping.R",
+    "project_path": "mapping.R",
+    "type": "r_source",
+    "hash": "3847127465",
+    "contents": "",
+    "dirty": false,
+    "created": 1596681315302.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "tempName": "Untitled1",
+        "cursorPosition": "0,72",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1596734150,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1596734150522,
+    "read_only": false,
+    "read_only_alternatives": []
+}

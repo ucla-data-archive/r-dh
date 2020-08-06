@@ -1,0 +1,258 @@
+---
+title: "The basics of R"
+author: ["Kristian Allen", "Jamie Jamison"]
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, comment = NULL, prompt = TRUE)
+
+```
+
+Introduction
+===============
+
+This is a quick introduction to R. It's not meant to be a comprehensive
+tutorial, but rather as a small, sturdy foothold to get you started. We will
+
+The R prompt tells us that it's ready for us to type commands. Unlike other
+programming languages, it's designed to be interactive.
+
+Since this is an R Markdown document, we can interact and mix documentation and code
+If you enclose a section in 3 backticks to signify the start of code, and 3 backticks
+to signify the end, you can run this by hitting the green play button on the right 
+corner of the shaded region.
+
+```{r calculate_good_times_1}
+1 + 100
+```
+
+```{r calculate_good_times_2}
+(3 + (5 * (2 ^ 2))) # hard to read
+3 + 5 * 2 ^ 2       # clear, if you remember the rules
+3 + 5 * (2 ^ 2)     # if you forget some rules, this might help
+```
+
+```{r calculate_good_times_3}
+
+# Give it a try, replace underscore with a number and remove # to uncomment
+
+# 123 + ____
+
+
+```
+
+Mathmatical functions
+===============
+
+R has many built in mathematical functions. To call a function, we simply type its name, followed by open and closing parentheses. Anything we type inside the parentheses is called the function’s arguments:
+
+```{r calculate_good_times_4}
+sin(1)
+log(1)
+exp(0.5)
+```
+
+
+Variables
+===============
+
+Unlike a calculator, you can save the results of your calculations into
+variables by using the . This
+looks like an arrow pointing the results of the calculation on the right to the
+variable on the left.
+
+```{r its_magic_1}
+# put the value 100 in variable
+
+x <- 100
+
+# check it out, we also see the variable x in our Global Environment pane under Values
+```
+
+```{r its_magic}
+x <- x + 1 #notice how RStudio updates its description of x on the top right tab
+y <- x * 2
+```
+
+> The '#' symbol is a "comment". R will ignore anything that comes after a
+> comment, allowing you to write notes to yourself in your R script
+
+Now that we saved the results into a variable, how do we look at it? All we have
+to do is type the variable:
+
+```{r magic_revealed}
+x
+y
+```
+
+Variables can be used in calculations.
+
+```{r multiple_magic}
+z <- x + 2
+z
+a <- y * 2
+a
+```
+
+You can even overwrite variables.
+
+```{r written_magic}
+x <- "oh"
+x
+y <- "wow"
+y
+```
+
+But single variables are not all that you can do In R. Read more to find out
+about vectors!
+
+Vectors
+===============
+
+R can store more than single values. It has 
+These are sequences of data that are all of the same type (i.e. integers,
+decimals, text (characters), and logical values (TRUE/FALSE)). To construct a 
+vector, you can use the `c()` function (more about functions later):
+
+```{r vector_me_this}
+some_numbers <- c(10.0, pi, 47.5362, 3.50, 1.1111)
+some_numbers  
+some_integers <- c(NA, 1, 1, 2, 3) # NA is code for "missing" in R
+some_integers 
+more_integers <- 1:5 # same as c(1, 2, 3, 4), but a lot easier to type!
+more_integers
+
+some_logic <- c(TRUE, FALSE, TRUE, TRUE, FALSE)
+some_logic
+```
+
+
+### Vectorization
+
+You can think about these as being similar to a column in an excel spreadhseet.
+For example, if you wanted to take column A and square each number, you would
+start by setting cell **B1** to `=A1^2` and then you would drag that down to
+apply to the entire column.
+
+Math works with vectors the same way in R:
+
+```{r v_add_o}
+some_integers ^ 2
+```
+
+> Note: "NA" is a missing value in R.
+
+Again, if you tried to add two columns together in excel, you would type 
+something like `=A1+B1` and then drag to apply to the column. R behaves the 
+same way:
+
+```{r v_drag}
+some_integers + some_numbers
+```
+
+Data Import
+===============
+
+Of course, no one expects you to enter all of your data in R by hand. 
+We'll preview importing a curated data set called gapminder
+
+Often helpful code is bundled together in packages. To use a package
+is a 2 step process:
+* Installing the package
+* Then telling R we want to enable the package for use
+
+```{r}
+
+# This checks first to see if the package is installed already, if so it skips
+# Behind the scenes it looks like:
+#install.packages("ggplot2")
+#install.packages("plyr")
+#install.packages("gapminder")
+
+requiredPackages = c('plyr','ggplot2','gapminder')
+for(p in requiredPackages){
+  if(!require(p,character.only = TRUE)) install.packages(p)
+  library(p,character.only = TRUE)
+}
+
+```
+
+Now we have to enable the package for this program using library("packagename")
+
+```{r}
+library(ggplot2)
+library(gapminder) #data
+
+```
+
+Plotting
+=============
+
+Since we loaded the gapminder library, we have access to the gapminder dataset.
+We also loaded the ggplot plotting library, so we can start plotting some graphs!
+
+```{r gapminder-plot}
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point()
+```
+
+
+```{r gapminder-plot-2}
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country, color=continent)) +
+  geom_line()
+
+```
+
+
+```{r gapminder-plot-3}
+ggplot(data = gapminder, mapping = aes(x=year, y=lifeExp, by=country, color=continent)) +
+  geom_line() + geom_point()
+
+```
+
+```{r gapminder-plot-4}
+ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() + scale_x_log10() + geom_smooth(method="lm")
+
+```
+
+```{r gapminder-plot-5}
+americas <- gapminder[gapminder$continent == "Americas",]
+ggplot(data = americas, mapping = aes(x = year, y = lifeExp)) +
+  geom_line() + 
+  facet_wrap( ~ country) + 
+  theme(axis.text.x = element_text(angle = 45))
+
+```
+
+Getting help
+===============
+
+One way that R shines above other languages is that R packages in CRAN are all
+documented and easy to install. Help files are written in HTML and give the user
+a brief overview of:
+
+ - the purpose of a function
+ - the parameters it takes
+ - the output it yields
+ - examples demonstrating its usage
+
+To get help on any R function, type a question mark before the empty function. 
+Here's an example of how to get help about the `gapminder()` function from the
+*gapminder* package:
+
+```{r}
+library("gapminder") # The package with the gapminder function.
+?gapminder               # open the R documentation of the function gapminder()
+```
+
+Other ways of getting help:
+
+```{r, eval = FALSE}
+help(package = "gapminder") # Get help for a package.
+help("gapminder")               # Get help for the gapminder function
+?gapminder                   # same as above
+
+```
+
+
